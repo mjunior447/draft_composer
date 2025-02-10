@@ -28,11 +28,11 @@ const DraftEditor = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-8 w-full h-fit">
+      <section className="flex flex-col gap-4 sm:gap-8 w-full h-fit">
         {hasNoParagraphs ? (
           <NoParagraphText />
         ) : (
-          <div className="px-8">
+          <div className="px-2 sm:px-8">
             {paragraphs.map((p) => {
               return <p>{p.text}</p>;
             })}
@@ -40,7 +40,7 @@ const DraftEditor = () => {
         )}
 
         <Paragraph setParagraphs={setParagraphs} />
-        <Button className="m-auto px-12" onClick={handleSendDraft}>
+        <Button className="m-auto px-12 w-full sm:w-auto" onClick={handleSendDraft}>
           Enviar rascunho
         </Button>
       </section>

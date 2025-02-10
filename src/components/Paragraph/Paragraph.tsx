@@ -36,7 +36,7 @@ const Paragraph = ({ setParagraphs }: ParagraphProps) => {
     <section className="flex flex-col justify-center items-center gap-4 p-2">
       <Textarea
         placeholder="Parágrafo aqui..."
-        className="max-w-xl min-h-28 max-h-48"
+        className="w-full sm:max-w-xl min-h-28 max-h-48"
         value={typedText}
         spellCheck={false}
         onChange={(e) => setTypedText(e.target.value)}
