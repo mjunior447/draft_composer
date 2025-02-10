@@ -6,10 +6,18 @@ import NoParagraphText from "../NoParagraphText/NoParagraphText";
 
 const DraftEditor = () => {
   const [paragraphs, setParagraphs] = useState<ParagraphEntity[]>([]);
+  const hasNoParagraphs = paragraphs.length === 0;
+
+  const handleSendDraft = () => {
+    if (hasNoParagraphs) {
+      return;
+    }
+  };
+
   return (
     <>
       <section className="flex flex-col gap-8 w-full h-fit">
-        {paragraphs.length === 0 ? (
+        {hasNoParagraphs ? (
           <NoParagraphText />
         ) : (
           <div className="px-8">
@@ -20,7 +28,9 @@ const DraftEditor = () => {
         )}
 
         <Paragraph setParagraphs={setParagraphs} />
-        <Button className="m-auto px-12">Enviar rascunho</Button>
+        <Button className="m-auto px-12" onClick={handleSendDraft}>
+          Enviar rascunho
+        </Button>
       </section>
     </>
   );
