@@ -3,14 +3,26 @@ import { useState } from "react";
 import Paragraph from "../Paragraph/Paragraph";
 import { Button } from "../ui/button";
 import NoParagraphText from "../NoParagraphText/NoParagraphText";
+import { useToast } from "@/hooks/use-toast";
 
 const DraftEditor = () => {
   const [paragraphs, setParagraphs] = useState<ParagraphEntity[]>([]);
+  const { toast } = useToast();
   const hasNoParagraphs = paragraphs.length === 0;
 
   const handleSendDraft = () => {
     if (hasNoParagraphs) {
-      return;
+      toast({
+        title: "Rascunho vazio",
+        description: "Adicione um parágrafo ao rascunho antes de enviá-lo",
+        variant: "destructive",
+      });
+    } else {
+      // lógica de persistência no banco de dados
+      toast({
+        title: "Tudo certo!",
+        description: "Seu rascunho foi salvo",
+      });
     }
   };
 

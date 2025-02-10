@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useToast } from "@/hooks/use-toast";
 
 type ParagraphProps = {
   setParagraphs: React.Dispatch<React.SetStateAction<ParagraphEntity[]>>;
@@ -10,10 +11,15 @@ type ParagraphProps = {
 
 const Paragraph = ({ setParagraphs }: ParagraphProps) => {
   const [typedText, setTypedText] = useState("");
+  const { toast } = useToast();
 
   const handleAddParagraph = () => {
     if (typedText.length === 0) {
-      // adicionar toast para dizer que nao pode add um paragrafo vazio
+      toast({
+        title: "Parágrafo vazio",
+        description: "Escreva um parágrafo antes de adicioná-lo",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -23,6 +29,7 @@ const Paragraph = ({ setParagraphs }: ParagraphProps) => {
     };
 
     setParagraphs((prev) => [...prev, newParagraph]);
+    setTypedText('')
   };
 
   return (
